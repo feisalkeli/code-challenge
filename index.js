@@ -7,11 +7,11 @@ function showMovieData(movie) {
       <h3>${movie.title}</h3>
       <h3>${movie.runtime}</h3>
       <h3>${movie.showtime}</h3>
-      <h3>${movie.tickets_sold}</h3>
+      <h3> Available Tickets:${movie.capacity} -${movie.tickets_sold}</h3>
     
     `;
     //Append the data to the DOM.
-    document.querySelector(".left-section").appendChild(card);
+    document.querySelector(".movies").appendChild(card);
   });
 }
 ///Fetches the first movie
@@ -44,7 +44,7 @@ function createMovieElements(data) {
       <h3>${data.capacity}</h3>
       <h3>${data.showtime}</h3>
       <h3>${data.description}</h3>
-      <h3>${data.tickets_sold}</h3>
+      <h3>${data.capacity}-${data.tickets_sold}</h3>
       </li> 
         `;
   document.querySelector(".left-section").append(list);
@@ -52,3 +52,11 @@ function createMovieElements(data) {
 
 ///button event listener
 const button = document.querySelector("button");
+button.addEventListener("click", () => {
+  let availableTickets = `${data.capacity}-${data.tickets_sold}`;
+  if (availableTickets >= 1) {
+    availableTickets--;
+  } else {
+    alert("Tickets are no longer available");
+  }
+});
